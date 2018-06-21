@@ -1,0 +1,5 @@
+{
+  "name": "testnet-faucet-jruby",
+  "private": true,
+  "dependencies": {}
+}
