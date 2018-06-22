@@ -26,3 +26,6 @@
 /config/master.key
 
 config/database.yml
+
+.env.local
+.env.*.local
