@@ -36,6 +36,8 @@ gem 'jbuilder', '~> 2.5'
 # gem 'bootsnap', '>= 1.1.0', require: false
 
 gem 'dotenv-rails'
+gem 'sha3-pure-ruby', '~> 0.1.1'
+gem 'awesome_print', '~> 1.8'
 
 group :development do
   gem 'listen', '>= 3.0.5', '< 3.2'

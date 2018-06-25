@@ -1,0 +1,10 @@
+<%= form_with model: @address, scope: :address, local: true do |form| %>
+  <div>
+    <div>Enter you address</div>
+    <%= form.text_field :addr, style: "width: 500px;" %>
+  </div>
+
+  <div>
+    <%= form.submit "Get NOS" %>
+  </div>
+<% end %>
