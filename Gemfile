@@ -39,8 +39,11 @@ gem 'dotenv-rails'
 gem 'sha3-pure-ruby', '~> 0.1.1'
 gem 'awesome_print', '~> 1.8'
 
-group :development do
+group :development, :test do
   gem 'listen', '>= 3.0.5', '< 3.2'
+  gem 'rspec-rails', '~> 3.7'
+  gem "database_cleaner"
+  gem "factory_bot_rails"
 end
 
 
