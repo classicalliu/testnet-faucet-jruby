@@ -1,38 +1,36 @@
-<%= form_with model: @address, local: true do |form| %>
+<%= form_with model: @address, scope: :address, local: true, class: "container mx-auto address-form", style: "width: 500px;" do |form| %>
 
-  <div class='simple_captcha_image'>
+  <div class="form-group">
+    <%= form.label :addr, "Enter your address" %>
+    <%= form.text_field :addr, class: "form-control" %>
+    <% if flash[:addr] %>
+      <small class="form-text text-danger">
+        <%= flash[:addr] %>
+      </small>
+    <% end %>
+  </div>
+
+  <div id="captcha" class="form-group row">
     <%= simple_captcha_options[:image] %>
+    <%= simple_captcha_options[:field] %>
+    <% if flash[:captcha] %>
+      <small class="form-text text-danger">
+        <%= flash[:captcha] %>
+      </small>
+    <% end %>
   </div>
 
   <div class='simple_captcha_refresh_button'>
     <%= simple_captcha_options[:refresh_button] %>
   </div>
 
-  <div class='simple_captcha_field'>
-    <span>captcha</span>
-    <span><%= simple_captcha_options[:field] %></span>
+  <div class="form-group">
+    <button type="submit" class="btn btn-primary col-sm-12">Get NOS</button>
+    <% if flash[:success] %>
+      <small class="form-text text-success">
+        <%= flash[:success] %>
+      </small>
+    <% end %>
   </div>
-
-  <% if flash[:captcha] %>
-    <div><%= flash[:captcha] %></div>
-  <% end %>
-
-  <div>
-    <div>Enter you address</div>
-    <%= form.text_field :addr, style: "width: 500px;" %>
-  </div>
-
-  <% if flash[:addr] %>
-    <div><%= flash[:addr] %></div>
-  <% end %>
-
-
-  <div>
-    <%= form.submit "Get NOS" %>
-  </div>
-
-  <% if flash[:success] %>
-    <div><%= flash[:success] %></div>
-  <% end %>
 
 <% end %>

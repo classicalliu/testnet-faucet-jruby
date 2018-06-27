@@ -41,6 +41,8 @@ gem 'awesome_print', '~> 1.8'
 gem 'simple_captcha2', require: 'simple_captcha'
 gem 'pry'
 gem 'pry-rails'
+gem 'jquery-rails', '~> 4.3', '>= 4.3.3'
+gem 'bootstrap', '~> 4.1', '>= 4.1.1'
 
 group :development, :test do
   gem 'listen', '>= 3.0.5', '< 3.2'
