@@ -1,4 +1,6 @@
 class AddressesController < ApplicationController
+  include SimpleCaptcha::ControllerHelpers
+
   # GET /addresses/new
   def new
     @address = Address.new
@@ -6,20 +8,31 @@ class AddressesController < ApplicationController
 
   # POST /addresses
   def create
+    ap "-------------------- params --------------"
+    ap params.to_unsafe_h
     addr = params.dig(:address, :addr)
     # STEP_1 check verification code
+    @address = Address.new(address_params)
+    unless @address.valid_with_captcha?
+      flash.now[:captcha] = "captcha is wrong"
+      return render :new
+    end
+
     # STEP_2 check address info
     unless TransactionInterface.is_address(addr)
       # address is error
-      flash[:error] = "address is wrong"
+      flash.now[:addr] = "address is wrong"
       return render :new
     end
+
     # STEP_3 save address
-    @address = Address.create(address_param)
+    @address.save
+
     # STEP_4 send a transaction to chain
     value = "100"
     @transaction_interface = TransactionInterface.new
     _hash, _state = @transaction_interface.send_transaction(addr, value)
+
     # STEP_5 notify frontend
     flash[:success] = "send success"
     redirect_to new_address_path
@@ -27,8 +40,14 @@ class AddressesController < ApplicationController
 
   private
 
-  def address_param
-    params.require(:address).permit(:addr)
+  def address_params
+    patch_params
+    params.require(:address).permit(:addr, :captcha, :captcha_key)
+  end
+
+  def patch_params
+    params[:address][:captcha] = params[:captcha]
+    params[:address][:captcha_key] = params[:captcha_key]
   end
 
 end

@@ -10,12 +10,20 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2018_06_22_090257) do
+ActiveRecord::Schema.define(version: 2018_06_27_111619) do
 
   create_table "addresses", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
     t.string "addr"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+  end
+
+  create_table "simple_captcha_data", id: :integer, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
+    t.string "key", limit: 40
+    t.string "value", limit: 6
+    t.datetime "created_at"
+    t.datetime "updated_at"
+    t.index ["key"], name: "idx_key"
   end
 
 end
