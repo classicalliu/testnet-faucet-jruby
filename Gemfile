@@ -44,6 +44,11 @@ gem 'pry-rails'
 gem 'jquery-rails', '~> 4.3', '>= 4.3.3'
 gem 'bootstrap', '~> 4.1', '>= 4.1.1'
 
+# Deployment
+gem 'mina', require: false
+gem 'mina-puma', require: false
+gem 'mina-multistage', require: false
+
 group :development, :test do
   gem 'listen', '>= 3.0.5', '< 3.2'
   gem 'rspec-rails', '~> 3.7'

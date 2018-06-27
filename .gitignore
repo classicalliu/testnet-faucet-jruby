@@ -29,3 +29,5 @@ config/database.yml
 
 .env.local
 .env.*.local
+
+config/puma.rb
