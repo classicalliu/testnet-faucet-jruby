@@ -1,3 +1,3 @@
 class Address < ApplicationRecord
-  apply_simple_captcha
+  # apply_simple_captcha
 end
