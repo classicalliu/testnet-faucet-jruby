@@ -8,8 +8,6 @@ class AddressesController < ApplicationController
 
   # POST /addresses
   def create
-    ap "-------------------- params --------------"
-    ap params.to_unsafe_h
     addr = params.dig(:address, :addr)
     # STEP_1 check verification code
     @address = Address.new(address_params)
@@ -29,7 +27,7 @@ class AddressesController < ApplicationController
     @address.save
 
     # STEP_4 send a transaction to chain
-    value = "100"
+    value = ENV.fetch("NOS_VALUE")
     @transaction_interface = TransactionInterface.new
     _hash, _state = @transaction_interface.send_transaction(addr, value)
 
