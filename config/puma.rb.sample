@@ -36,7 +36,7 @@
 
 # sample for puma production env
 environment 'production'
-workers 2
+workers 1
 threads 1, 6
 
 app_name = "testnet-faucet-jruby"
